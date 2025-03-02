@@ -1,17 +1,19 @@
 interface STModalLayoutProps {
     children: React.ReactNode;
     backdrop?: boolean;
+    onClickBackdrop?: () => void;
     size: "s" | "l";
 }
 
 export default function STModalLayout({
     children,
     backdrop = true,
+    onClickBackdrop,
     size,
 }: STModalLayoutProps) {
     return (
         <div className="st-modal-layout">
-            {backdrop && <div className="backdrop" />}
+            {backdrop && <div className="backdrop" onClick={onClickBackdrop} />}
             <div
                 className={`modal-content`}
                 style={{

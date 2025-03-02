@@ -3,6 +3,7 @@ import STLogPageLayout from "./components/layout/STLogPageLayout";
 import { Log } from "./types/Log";
 import { useState } from "react";
 import STLogDetailModal from "./components/modals/STLogDetailModal";
+import STNotifyModal from "./components/modals/STNotifyModal";
 
 function App() {
     const [logs, setLogs] = useState<Log[]>([]);
@@ -43,6 +44,7 @@ function App() {
                     onClose={closeDetailModal}
                 />
             )}
+            <STNotifyModal isOpen={true} onClose={() => {}} />
         </>
     );
 }

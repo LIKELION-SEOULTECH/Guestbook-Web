@@ -259,3 +259,32 @@
     gap: 20px;
     align-items: center;
 }
+
+.notify-titile {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.notify-content {
+    font-weight: 500;
+}
+
+.notify-button {
+    width: 172px;
+    height: 52px;
+    border: none;
+    border-radius: 10px;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.success {
+    background-color: #ccff9c;
+    color: #00ae17;
+}
+
+.fail {
+    background-color: #ffb7b7;
+    color: #f24822;
+}

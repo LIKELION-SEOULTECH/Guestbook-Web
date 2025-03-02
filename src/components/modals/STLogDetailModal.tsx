@@ -19,7 +19,7 @@ export default function STLogDetailModal({
 }: STLogDetailModalProps) {
     if (!isOpen) return null;
     return (
-        <STModalLayout size="l">
+        <STModalLayout size="l" onClickBackdrop={onClose}>
             <div className="detail-modal-top">
                 <div className="detail-modal-header">
                     <b>{formatDate(log.date)}</b>
