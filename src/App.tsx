@@ -1,10 +1,10 @@
 import "@styles/App.css";
-import Header from "@components/Header";
+import STLogPageLayout from "./components/layout/STLogPageLayout";
 
 function App() {
     return (
         <>
-            <Header />
+            <STLogPageLayout />
         </>
     );
 }
