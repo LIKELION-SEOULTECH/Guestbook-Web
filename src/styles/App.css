@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.button {
+    cursor: pointer;
+}
+
 .stlog-page-layout .main {
     padding-top: 140px;
     padding-bottom: 40px;
@@ -187,6 +191,71 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    gap: 40px;
 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.detail-modal-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.detail-modal-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    width: 100%;
+}
+
+.detail-modal-content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 28;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.detail-modal-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.emotion {
+    width: 144px;
+    height: 80px;
+    background-color: #dadada;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 48px;
+}
+
+.positive {
+    background-color: #ccff9c;
+}
+
+.negative {
+    background-color: #ffb7b7;
+}
+
+.detail-modal-bottom .delete-button {
+    background-color: #ffb7b7;
+    padding: 14px 15px;
+    border-radius: 10px;
+}
+
+.emotion-result {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
 }

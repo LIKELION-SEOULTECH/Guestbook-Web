@@ -1,6 +1,6 @@
 // STLogItem.tsx 예시 (div 사용)
 import { Log } from "@/types/Log";
-import formatDate from "@/utils/formatData";
+import formatDate from "@/utils/formatDate";
 
 interface STLogItemProps {
     log: Log;

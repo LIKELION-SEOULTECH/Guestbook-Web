@@ -2,7 +2,7 @@ import "@styles/App.css";
 import STLogPageLayout from "./components/layout/STLogPageLayout";
 import { Log } from "./types/Log";
 import { useState } from "react";
-import STModalLayout from "./components/modals/STModalLayout";
+import STLogDetailModal from "./components/modals/STLogDetailModal";
 
 function App() {
     const [logs, setLogs] = useState<Log[]>([]);
@@ -36,9 +36,13 @@ function App() {
                 handleAddLog={handleAddLog}
                 handleSelectLog={handleSelectLog}
             />
-            {/* <STModalLayout backdrop={true} size="l">
-                123123123
-            </STModalLayout> */}
+            {selectedLog && (
+                <STLogDetailModal
+                    isOpen={detailModalOpen}
+                    log={selectedLog}
+                    onClose={closeDetailModal}
+                />
+            )}
         </>
     );
 }
