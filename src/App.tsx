@@ -1,7 +1,7 @@
 import "@styles/App.css";
 import STLogPageLayout from "./components/layout/STLogPageLayout";
 import { Log } from "./types/Log";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import STLogDetailModal from "./components/modals/STLogDetailModal";
 import STConfirmModal from "./components/modals/STConfirmModal";
 
@@ -10,23 +10,23 @@ function App() {
     const [selectedLogId, setSelectedLogId] = useState<number | null>(null);
     const [detailModalOpen, setDetailModalOpen] = useState(false);
 
-    const handleAddLog = (text: string) => {
+    const handleAddLog = useCallback((text: string) => {
         const newLog: Log = {
-            id: logs.length + 1,
+            id: Date.now(),
             date: new Date(),
             text,
         };
-        setLogs([newLog, ...logs]);
-    };
+        setLogs((prevLogs) => [newLog, ...prevLogs]);
+    }, []);
 
-    const handleSelectLog = (id: number) => {
+    const handleSelectLog = useCallback((id: number) => {
         setSelectedLogId(id);
         setDetailModalOpen(true);
-    };
+    }, []);
 
-    const closeDetailModal = () => {
+    const closeDetailModal = useCallback(() => {
         setDetailModalOpen(false);
-    };
+    }, []);
 
     const selectedLog = logs.find((log) => log.id === selectedLogId) || null;
 

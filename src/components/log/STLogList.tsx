@@ -1,12 +1,13 @@
 import { Log } from "@/types/Log";
 import STLogItem from "./STLogItem";
+import React from "react";
 
 interface STLogListProps {
     logs: Log[];
     onSelectLog: (id: number) => void;
 }
 
-export default function STLogList({ logs, onSelectLog }: STLogListProps) {
+function STLogList({ logs, onSelectLog }: STLogListProps) {
     return (
         <div className="stlog-list">
             {logs.map((log) => (
@@ -17,3 +18,5 @@ export default function STLogList({ logs, onSelectLog }: STLogListProps) {
         </div>
     );
 }
+
+export default React.memo(STLogList);
