@@ -3,10 +3,16 @@
 
     color-scheme: light dark;
     color: #000;
-    background-color: F7F7F7;
+    background-color: #f7f7f7;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
