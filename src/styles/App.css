@@ -80,7 +80,7 @@
     align-items: center;
 }
 
-.submit-container input {
+.password {
     border-radius: 8px;
     border: 1px solid #000;
     padding: 0 16px;
@@ -183,6 +183,7 @@
 }
 
 .st-modal-layout .modal-content {
+    position: relative;
     z-index: 20;
     background-color: #fff;
     border-radius: 16px;
@@ -260,16 +261,34 @@
     align-items: center;
 }
 
-.notify-titile {
-    font-size: 32px;
-    font-weight: 700;
+.small-modal-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    position: relative;
 }
 
-.notify-content {
+.small-modal-title {
+    font-size: 32px;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.small-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+
+.small-modal-content-text {
     font-weight: 500;
 }
 
-.notify-button {
+.small-modal-button {
     width: 172px;
     height: 52px;
     border: none;

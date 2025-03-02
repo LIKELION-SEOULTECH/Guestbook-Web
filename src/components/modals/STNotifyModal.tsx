@@ -9,11 +9,11 @@ export default function STNotifyModal({ isOpen, onClose }: STNotifyModalProps) {
     if (!isOpen) return null;
     return (
         <STModalLayout size="s" onClickBackdrop={onClose}>
-            <h2 className="notify-title">SUCCESS</h2>
-            <div className="notify-content">Delete successfully</div>
+            <h2 className="small-modal-title">SUCCESS</h2>
+            <div className="small-modal-content-text">Delete successfully</div>
             <button
                 onClick={onClose}
-                className={`notify-button button 
+                className={`small-modal-button button 
                 ${true === true ? "success" : "fail"}
                 `}
             >

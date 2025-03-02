@@ -28,6 +28,7 @@ export default function STLogInput({ handleAddLog }: STLogInputProps) {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className="password"
                 />
                 <button type="submit">SUBMIT</button>
             </div>
