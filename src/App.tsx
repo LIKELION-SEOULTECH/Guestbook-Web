@@ -3,7 +3,7 @@ import STLogPageLayout from "./components/layout/STLogPageLayout";
 import { Log } from "./types/Log";
 import { useCallback, useState } from "react";
 import STLogDetailModal from "./components/modals/STLogDetailModal";
-import STConfirmModal from "./components/modals/STConfirmModal";
+import { ModalProvider } from "./context/ModalContext";
 
 function App() {
     const [logs, setLogs] = useState<Log[]>([]);
@@ -31,7 +31,7 @@ function App() {
     const selectedLog = logs.find((log) => log.id === selectedLogId) || null;
 
     return (
-        <>
+        <ModalProvider>
             <STLogPageLayout
                 logs={logs}
                 handleAddLog={handleAddLog}
@@ -44,7 +44,7 @@ function App() {
                     onClose={closeDetailModal}
                 />
             )}
-        </>
+        </ModalProvider>
     );
 }
 

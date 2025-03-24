@@ -1,20 +1,26 @@
 import STModalLayout from "./STModalLayout";
 
 interface STNotifyModalProps {
-    isOpen: boolean;
     onClose: () => void;
+    isSuccess: boolean;
+    title: string;
+    message: string;
 }
 
-export default function STNotifyModal({ isOpen, onClose }: STNotifyModalProps) {
-    if (!isOpen) return null;
+export default function STNotifyModal({
+    onClose,
+    isSuccess,
+    title,
+    message,
+}: STNotifyModalProps) {
     return (
         <STModalLayout size="s" onClickBackdrop={onClose}>
-            <h2 className="small-modal-title">SUCCESS</h2>
-            <div className="small-modal-content-text">Delete successfully</div>
+            <h2 className="small-modal-title">{title}</h2>
+            <div className="small-modal-content-text">{message}</div>
             <button
                 onClick={onClose}
                 className={`small-modal-button button 
-                ${true === true ? "success" : "fail"}
+                ${isSuccess ? "success" : "fail"}
                 `}
             >
                 Close

@@ -272,9 +272,6 @@
 .small-modal-title {
     font-size: 32px;
     font-weight: 700;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .small-modal-content {
