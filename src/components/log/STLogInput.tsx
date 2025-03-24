@@ -1,27 +1,30 @@
 import { useState } from "react";
 
 interface STLogInputProps {
-    handleAddLog: (text: string, username: string, password: string) => void;
+    handleAddLog: (content: string, username: string, password: string) => void;
 }
 
 export default function STLogInput({ handleAddLog }: STLogInputProps) {
-    const [text, setText] = useState("");
+    const [content, setContent] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
 
     const onSumbit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (text.trim() === "") return;
-        handleAddLog(text, username, password);
-        setText("");
+
+        handleAddLog(content, username, password);
+
+        setContent("");
+        setUsername("");
+        setPassword("");
     };
 
     return (
         <form onSubmit={onSumbit} className="stlog-input">
             <textarea
                 placeholder="Text here..."
-                value={text}
-                onChange={(e) => setText(e.target.value)}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
             />
             <div className="submit-container">
                 <input

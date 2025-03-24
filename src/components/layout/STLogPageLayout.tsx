@@ -5,7 +5,7 @@ import Header from "./Header";
 
 interface STLogPageLayoutProps {
     logs: Log[];
-    handleAddLog: (text: string) => void;
+    handleAddLog: (content: string, username: string, password: string) => void;
     handleSelectLog: (id: number) => void;
 }
 

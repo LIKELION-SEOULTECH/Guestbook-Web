@@ -1,5 +1,8 @@
 export interface Log {
     id: number;
-    date: Date;
-    text: string;
+    userName: string;
+    content: string;
+    emotion: string;
+    createdAt: string;
+    updatedAt: string;
 }

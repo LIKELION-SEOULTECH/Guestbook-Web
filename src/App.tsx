@@ -3,21 +3,35 @@ import STLogPageLayout from "./components/layout/STLogPageLayout";
 import { Log } from "./types/Log";
 import { useCallback, useState } from "react";
 import STLogDetailModal from "./components/modals/STLogDetailModal";
-import { ModalProvider } from "./context/ModalContext";
+import { useModal } from "./context/ModalContext";
+import { postLog } from "./apis/posts";
 
 function App() {
     const [logs, setLogs] = useState<Log[]>([]);
     const [selectedLogId, setSelectedLogId] = useState<number | null>(null);
     const [detailModalOpen, setDetailModalOpen] = useState(false);
+    const { openModal } = useModal();
 
-    const handleAddLog = useCallback((text: string) => {
-        const newLog: Log = {
-            id: Date.now(),
-            date: new Date(),
-            text,
-        };
-        setLogs((prevLogs) => [newLog, ...prevLogs]);
-    }, []);
+    const handleAddLog = useCallback(
+        async (content: string, username: string, password: string) => {
+            postLog(content, username, password)
+                .then((newLog) => {
+                    console.log(newLog);
+                    setLogs((prevLogs) => [newLog, ...prevLogs]);
+                    return true;
+                })
+                .catch((error) => {
+                    const errorMessage = error.response.data.error;
+                    openModal({
+                        isSuccess: false,
+                        title: errorMessage.code,
+                        message: errorMessage.message,
+                    });
+                    return false;
+                });
+        },
+        [openModal]
+    );
 
     const handleSelectLog = useCallback((id: number) => {
         setSelectedLogId(id);
@@ -31,7 +45,7 @@ function App() {
     const selectedLog = logs.find((log) => log.id === selectedLogId) || null;
 
     return (
-        <ModalProvider>
+        <>
             <STLogPageLayout
                 logs={logs}
                 handleAddLog={handleAddLog}
@@ -44,7 +58,7 @@ function App() {
                     onClose={closeDetailModal}
                 />
             )}
-        </ModalProvider>
+        </>
     );
 }
 
