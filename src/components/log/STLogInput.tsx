@@ -1,17 +1,18 @@
 import { useState } from "react";
 
 interface STLogInputProps {
-    handleAddLog: (text: string) => void;
+    handleAddLog: (text: string, username: string, password: string) => void;
 }
 
 export default function STLogInput({ handleAddLog }: STLogInputProps) {
     const [text, setText] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
 
     const onSumbit = (e: React.FormEvent) => {
         e.preventDefault();
         if (text.trim() === "") return;
-        handleAddLog(text);
+        handleAddLog(text, username, password);
         setText("");
     };
 
@@ -24,11 +25,18 @@ export default function STLogInput({ handleAddLog }: STLogInputProps) {
             />
             <div className="submit-container">
                 <input
+                    type="username"
+                    placeholder="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="submit-input"
+                />
+                <input
                     type="password"
-                    placeholder="Password"
+                    placeholder="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="password"
+                    className="submit-input"
                 />
                 <button type="submit">SUBMIT</button>
             </div>
