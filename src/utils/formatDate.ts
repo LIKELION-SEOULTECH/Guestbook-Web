@@ -1,12 +1,12 @@
-const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+export default function formatDateBySplit(dateString: string): string {
+    const [datePart, timePartWithZone] = dateString.split("T");
+    const [year, month, day] = datePart.split("-");
+    const timePart = timePartWithZone.replace("Z", "");
+    const [hours, minutes] = timePart.split(":");
 
-export default function formatDate(date: Date): string {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    const dayOfWeek = daysOfWeek[date.getDay()];
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const dateObj = new Date(dateString);
+    const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+    const dayOfWeek = daysOfWeek[dateObj.getUTCDay()];
 
     return `${year}. ${month}. ${day} (${dayOfWeek}) ${hours}:${minutes}`;
 }

@@ -5,6 +5,7 @@ import formatDate from "@/utils/formatDate";
 
 import CloseIcon from "@/assets/svgs/close.svg?react";
 import DeleteIcon from "@/assets/svgs/delete.svg?react";
+import { EmotionIcon } from "../emotion/EmotionIcon";
 
 interface STLogDetailModalProps {
     isOpen: boolean;
@@ -22,15 +23,15 @@ export default function STLogDetailModal({
         <STModalLayout size="l" onClickBackdrop={onClose}>
             <div className="detail-modal-top">
                 <div className="detail-modal-header">
-                    <b>{formatDate(log.date)}</b>
+                    <b>{formatDate(log.createdAt)}</b>
                     <CloseIcon onClick={onClose} className="button" />
                 </div>
-                <div className="detail-modal-content">{log.text}</div>
+                <div className="detail-modal-content">{log.content}</div>
             </div>
             <div className="detail-modal-bottom">
                 <div className="emotion-result">
                     <b>텍스트 감정 분석 결과</b>
-                    <Positive />
+                    <EmotionIcon emotion={log.emotion} />
                 </div>
                 <div className="delete-button button">
                     <DeleteIcon onClick={() => {}} />
@@ -38,16 +39,4 @@ export default function STLogDetailModal({
             </div>
         </STModalLayout>
     );
-}
-
-function Positive() {
-    return <div className="emotion positive">😀</div>;
-}
-
-function Negative() {
-    return <div className="emotion negative">😡</div>;
-}
-
-function Neutral() {
-    return <div className="emotion">😶</div>;
 }

@@ -10,8 +10,8 @@ interface STLogItemProps {
 function STLogItem({ log, onSelectLog }: STLogItemProps) {
     return (
         <div className="stlog-item" onClick={() => onSelectLog(log.id)}>
-            <div className="date">{formatDate(log.date)}</div>
-            <div className="text">{log.text}</div>
+            <div className="date">{formatDate(log.createdAt)}</div>
+            <div className="text">{log.content}</div>
         </div>
     );
 }
