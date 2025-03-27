@@ -10,12 +10,12 @@ export const postLog = async (
         userName: username,
         password,
     });
-    return res.data;
+    return res.data.data;
 };
 
 export const getLogs = async () => {
     const res = await axiosInstance.get("/posts");
-    return res.data;
+    return res.data.data;
 };
 
 export const patchLog = async (
@@ -66,7 +66,7 @@ export const testGet = async () => {
         },
         posts: [
             {
-                id: 1,
+                id: 100,
                 userName: "작성자 이름",
                 content: "글 내용",
                 emotion: "HORROR",
@@ -74,7 +74,7 @@ export const testGet = async () => {
                 updatedAt: "2025-03-02T12:00:00Z",
             },
             {
-                id: 2,
+                id: 102,
                 userName: "작성자 이름",
                 content: "글 내용",
                 emotion: "SURPRISE",
@@ -82,7 +82,7 @@ export const testGet = async () => {
                 updatedAt: "2025-03-02T12:00:00Z",
             },
             {
-                id: 3,
+                id: 103,
                 userName: "작성자 이름",
                 content: "글 내용",
                 emotion: "ANGER",

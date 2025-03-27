@@ -6,19 +6,33 @@ import formatDate from "@/utils/formatDate";
 import CloseIcon from "@/assets/svgs/close.svg?react";
 import DeleteIcon from "@/assets/svgs/delete.svg?react";
 import { EmotionIcon } from "../emotion/EmotionIcon";
+import { useState } from "react";
+import STDeleteModal from "./STDeleteModal";
 
 interface STLogDetailModalProps {
-    isOpen: boolean;
     log: Log;
     onClose: () => void;
 }
 
 export default function STLogDetailModal({
-    isOpen,
     log,
     onClose,
 }: STLogDetailModalProps) {
-    if (!isOpen) return null;
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    if (isDeleting) {
+        return (
+            <STDeleteModal
+                id={log.id}
+                onClose={() => setIsDeleting(false)}
+                onDelete={() => {
+                    setIsDeleting(false);
+                    onClose();
+                }}
+            />
+        );
+    }
+
     return (
         <STModalLayout size="l" onClickBackdrop={onClose}>
             <div className="detail-modal-top">
@@ -34,7 +48,7 @@ export default function STLogDetailModal({
                     <EmotionIcon emotion={log.emotion} />
                 </div>
                 <div className="delete-button button">
-                    <DeleteIcon onClick={() => {}} />
+                    <DeleteIcon onClick={() => setIsDeleting(true)} />
                 </div>
             </div>
         </STModalLayout>

@@ -4,7 +4,7 @@ import { Log } from "./types/Log";
 import { useCallback, useEffect, useState } from "react";
 import STLogDetailModal from "./components/modals/STLogDetailModal";
 import { useModal } from "./context/ModalContext";
-import { getLogs, postLog, testGet } from "./apis/posts";
+import { postLog, testGet } from "./apis/posts";
 
 function App() {
     const [logs, setLogs] = useState<Log[]>([]);
@@ -14,7 +14,7 @@ function App() {
 
     useEffect(() => {
         testGet().then((data) => {
-            setLogs(data.posts);
+            setLogs(data.posts as Log[]);
         });
     }, []);
 
@@ -55,9 +55,8 @@ function App() {
                 handleAddLog={handleAddLog}
                 handleSelectLog={handleSelectLog}
             />
-            {selectedLog && (
+            {selectedLog && detailModalOpen && (
                 <STLogDetailModal
-                    isOpen={detailModalOpen}
                     log={selectedLog}
                     onClose={closeDetailModal}
                 />

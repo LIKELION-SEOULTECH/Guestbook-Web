@@ -5,6 +5,7 @@ interface ModalProps {
     isSuccess: boolean;
     title: string;
     message: string;
+    onClose?: () => void;
 }
 
 interface ModalContextProps {
@@ -23,6 +24,9 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
 
     const closeModal = () => {
         setModalProps(null);
+        if (modalProps?.onClose) {
+            modalProps.onClose();
+        }
     };
 
     return (
