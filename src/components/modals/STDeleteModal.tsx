@@ -1,4 +1,4 @@
-import { testDelete } from "@/apis/posts";
+import { deleteLog } from "@/apis/posts";
 import STModalLayout from "./STModalLayout";
 import CloseIcon from "@assets/svgs/close.svg?react";
 import { useModal } from "@/context/ModalContext";
@@ -17,10 +17,10 @@ export default function STDeleteModal({
 }: STDeleteModalProps) {
     const { openModal } = useModal();
     const [password, setPassword] = useState("");
-    async function deleteLog(id: number, password: string) {
-        const res = await testDelete(id, password);
+    async function onDeleteLog(id: number, password: string) {
+        const res = await deleteLog(id, password);
 
-        if (res.success) {
+        if (res === 204) {
             openModal({
                 isSuccess: true,
                 title: "SUCCESS",
@@ -42,7 +42,7 @@ export default function STDeleteModal({
             <div className="small-modal-header">
                 <div style={{ width: "30px" }} />
                 <h2 className="small-modal-title">DELETE </h2>
-                <CloseIcon className="button" />
+                <CloseIcon className="button" onClick={onClose} />
             </div>
 
             <div className="small-modal-content">
@@ -59,7 +59,7 @@ export default function STDeleteModal({
             </div>
 
             <button
-                onClick={() => deleteLog(id, password)}
+                onClick={() => onDeleteLog(id, password)}
                 className="small-modal-button button fail"
             >
                 Delete

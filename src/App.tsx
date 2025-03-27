@@ -4,7 +4,7 @@ import { Log } from "./types/Log";
 import { useCallback, useEffect, useState } from "react";
 import STLogDetailModal from "./components/modals/STLogDetailModal";
 import { useModal } from "./context/ModalContext";
-import { postLog, testGet } from "./apis/posts";
+import { getLogs, postLog } from "./apis/posts";
 
 function App() {
     const [logs, setLogs] = useState<Log[]>([]);
@@ -13,7 +13,7 @@ function App() {
     const { openModal } = useModal();
 
     useEffect(() => {
-        testGet().then((data) => {
+        getLogs().then((data) => {
             setLogs(data.posts as Log[]);
         });
     }, []);

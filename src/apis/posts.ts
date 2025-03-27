@@ -36,7 +36,7 @@ export const deleteLog = async (id: number, password: string) => {
             password,
         },
     });
-    return res.data;
+    return res.status;
 };
 
 // POST 요청의 더미 데이터 반환 함수
