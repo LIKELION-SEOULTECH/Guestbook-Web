@@ -1,10 +1,10 @@
 import "@styles/App.css";
 import STLogPageLayout from "./components/layout/STLogPageLayout";
 import { Log } from "./types/Log";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import STLogDetailModal from "./components/modals/STLogDetailModal";
 import { useModal } from "./context/ModalContext";
-import { postLog } from "./apis/posts";
+import { getLogs, postLog, testGet } from "./apis/posts";
 
 function App() {
     const [logs, setLogs] = useState<Log[]>([]);
@@ -12,13 +12,18 @@ function App() {
     const [detailModalOpen, setDetailModalOpen] = useState(false);
     const { openModal } = useModal();
 
+    useEffect(() => {
+        testGet().then((data) => {
+            setLogs(data.posts);
+        });
+    }, []);
+
     const handleAddLog = useCallback(
         async (content: string, username: string, password: string) => {
-            postLog(content, username, password)
+            await postLog(content, username, password)
                 .then((newLog) => {
                     console.log(newLog);
                     setLogs((prevLogs) => [newLog, ...prevLogs]);
-                    return true;
                 })
                 .catch((error) => {
                     const errorMessage = error.response.data.error;
@@ -27,7 +32,6 @@ function App() {
                         title: errorMessage.code,
                         message: errorMessage.message,
                     });
-                    return false;
                 });
         },
         [openModal]
